@@ -1,5 +1,7 @@
 package model;
 
+//Test commit
+
 /**
  *
  * AssistantJackTest.java: JUnit tester for Assistant Jack
