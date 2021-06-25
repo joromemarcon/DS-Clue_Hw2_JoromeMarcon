@@ -1,0 +1,4 @@
+1. I get a solution under 20 tries pretty often. Around 95% of the time. The number of tries depends on the theory I test
+and the initial random numbers I get as an entry point answer.
+2. The good in this strategy is that I used the random class to give me an initial value for fairness in the algorithm.
+The bad in this program I wrote is that I nested 2 while loops.
