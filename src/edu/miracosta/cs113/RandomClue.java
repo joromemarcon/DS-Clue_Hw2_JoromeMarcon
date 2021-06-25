@@ -70,6 +70,7 @@ public class RandomClue {
             location = random.nextInt(10) + 1;
             murder = random.nextInt(6) + 1;
 
+            //initialize loop counter
             int i = 1;
             int j = 10;
             int k = 1;
