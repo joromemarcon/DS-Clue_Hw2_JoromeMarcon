@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="model.AssistantJackTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-06-25T02:40:25" hostname="JOROME" time="0.004">
+  <properties/>
+  <testcase name="testCheckAnswerSet1" classname="model.AssistantJackTest" time="0.003"/>
+  <testcase name="testCheckAnswerSet2" classname="model.AssistantJackTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

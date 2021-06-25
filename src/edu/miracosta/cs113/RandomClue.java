@@ -51,6 +51,7 @@ public class RandomClue {
     public static void main(String[] args) {
         // DECLARATION + INITIALIZATION
         int answerSet, solution, murder, weapon, location;
+        int countTimesAsked = 1;
         Theory answer;
         AssistantJack jack;
         Scanner keyboard = new Scanner(System.in);
@@ -58,30 +59,78 @@ public class RandomClue {
 
         // INPUT
         System.out.print("Which theory would like you like to test? (1, 2, 3[random]): ");
-        answerSet = keyboard.nextInt();
+        answerSet = keyboard.nextInt(); //ex enter 1 so AnswerSet(1,1,1)
         keyboard.close();
 
         // PROCESSING
-        jack = new AssistantJack(answerSet);
+        jack = new AssistantJack(answerSet); //AnswerSet is (1,1,1)
 
         do {
             weapon = random.nextInt(6) + 1;
             location = random.nextInt(10) + 1;
             murder = random.nextInt(6) + 1;
+
+            int i = 1;
+            int j = 10;
+            int k = 1;
+
+            /* @return 0 if all three are correct, 1 if the weapon is incorrect, 2 if
+             * the location is incorrect and 3 if the person is incorrect. If
+             * multiple are incorrect it will randomly select one of the
+             * incorrect parts and return that.
+             */
+
             solution = jack.checkAnswer(weapon, location, murder);
-        } while (solution != 0);
+            //Added Code
+            System.out.println(countTimesAsked + " " + solution + " " + weapon + " " + location + " " + murder);
 
-        answer = new Theory(weapon, location, murder);
+            while(solution!=0 || countTimesAsked != 21) {
+                if(solution == 1 && weapon == 1) i = 2;
+                if(solution == 2 && location == 10) j = 9;
+                if(solution == 3 && murder == 1) k = 2;
 
-        // OUTPUT
-        System.out.println("Total Checks = " + jack.getTimesAsked() + ", Solution " + answer);
+                if (solution == 1) {
+                        solution = jack.checkAnswer(i, location, murder);
+                        weapon = i;
+                        countTimesAsked++;
+                        i++;
+                        if(weapon == i) i++;
+                        System.out.println(countTimesAsked + " " + solution + " " + weapon + " " + location + " " + murder);
 
-        if (jack.getTimesAsked() > 20) {
-            System.out.println("FAILED!! You're a horrible Detective...");
-        } else {
-            System.out.println("WOW! You might as well be called Batman!");
+                }
+                else if (solution == 2) {
+                        solution = jack.checkAnswer(weapon, j, murder);
+                        location = j;
+                        countTimesAsked++;
+                        j--;
+                        if(location == j) j--;
+                        System.out.println(countTimesAsked + " " + solution + " " + weapon + " " + location + " " + murder);
+
+                }
+                else if (solution == 3) {
+                        solution = jack.checkAnswer(weapon, location, k);
+                        murder = k;
+                        countTimesAsked++;
+                        k++;
+                        if(murder == k) k++;
+                        System.out.println(countTimesAsked + " " + solution + " " + weapon + " " + location + " " + murder);
+
+                }
+                else break;
+            }
+
+        }while (solution != 0);
+
+            answer = new Theory(weapon, location, murder);
+
+            // OUTPUT
+            System.out.println("Total Checks = " + jack.getTimesAsked() + ", Solution " + answer);
+
+            if (jack.getTimesAsked() > 20) {
+                System.out.println("FAILED!! You're a horrible Detective...");
+            } else {
+                System.out.println("WOW! You might as well be called Batman!");
+            }
         }
-
     }
 
-}
