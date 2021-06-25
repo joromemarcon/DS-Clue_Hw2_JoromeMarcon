@@ -71,49 +71,51 @@ public class RandomClue {
             murder = random.nextInt(6) + 1;
 
             //initialize loop counter
-            int i = 1;
-            int j = 10;
-            int k = 1;
+            int i = 1; // weapon 1-6
+            int j = 10; // location 1-10
+            int k = 1; //murderer 1-6
 
             /* @return 0 if all three are correct, 1 if the weapon is incorrect, 2 if
              * the location is incorrect and 3 if the person is incorrect. If
              * multiple are incorrect it will randomly select one of the
              * incorrect parts and return that.
              */
+            int initialWeapon = weapon;
+            int initialLocation = location;
+            int initialMurder = murder;
 
             solution = jack.checkAnswer(weapon, location, murder);
             //Added Code
             System.out.println(countTimesAsked + " " + solution + " " + weapon + " " + location + " " + murder);
 
             while(solution!=0 || countTimesAsked != 21) {
-                if(solution == 1 && weapon == 1) i = 2;
-                if(solution == 2 && location == 10) j = 9;
-                if(solution == 3 && murder == 1) k = 2;
+                if(solution == 1 && weapon == 1) i = 2; //weapon
+                if(solution == 2 && location == 10) j = 9; //location
+                if(solution == 3 && murder == 1) k = 2; //murderer
 
                 if (solution == 1) {
+                        if(initialWeapon == i) i++;
                         solution = jack.checkAnswer(i, location, murder);
                         weapon = i;
                         countTimesAsked++;
                         i++;
-                        if(weapon == i) i++;
                         System.out.println(countTimesAsked + " " + solution + " " + weapon + " " + location + " " + murder);
-
                 }
                 else if (solution == 2) {
+                        if(initialLocation == j) j--;
                         solution = jack.checkAnswer(weapon, j, murder);
                         location = j;
                         countTimesAsked++;
                         j--;
-                        if(location == j) j--;
                         System.out.println(countTimesAsked + " " + solution + " " + weapon + " " + location + " " + murder);
 
                 }
                 else if (solution == 3) {
+                        if(initialMurder == k) k++;
                         solution = jack.checkAnswer(weapon, location, k);
                         murder = k;
                         countTimesAsked++;
                         k++;
-                        if(murder == k) k++;
                         System.out.println(countTimesAsked + " " + solution + " " + weapon + " " + location + " " + murder);
 
                 }
